@@ -1,0 +1,17 @@
+services:
+  whoami:
+    image: "traefik/whoami"
+    container_name: "test-whoami"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.whoami.rule=Host(`whoami.fet.fit`)"
+      - "traefik.http.routers.whoami.entrypoints=websecure"
+      - "traefik.http.routers.whoami.tls.certresolver=lets-encrypt"
+
+    networks:
+      web:
+        # ipv4_address: ${IP_PORTAINER}
+
+networks:
+  web:
+    external: true
